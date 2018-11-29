@@ -1,0 +1,84 @@
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+
+
+<div class="container-fluid">
+
+  <div class="gedf-main">
+
+
+    <div class="card gedf-card">
+
+
+      <!--- \\\\\\\Post-->
+      <div class="mt-6 card gedf-card">
+        <form [formGroup]="storyForm" (ngSubmit)="createStory()">
+
+        <div class="card-body ">
+          <textarea formControlName="title" class="form-control"  placeholder="Storys title"></textarea>
+
+            <textarea formControlName="text" class="form-control" placeholder="What are you thinking?"></textarea>
+
+          <div class="text-right">
+              <button class="btn btn-primary" type="submit">share</button>
+          </div>
+        </div>
+        </form>
+
+      </div>
+
+
+    <ul *ngIf="stories">
+      <li *ngFor="let story of stories">
+
+    <div class="card gedf-card">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="mr-2">
+              <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+            </div>
+            <div class="ml-2">
+              <div class="h5 m-0">{{story.id}}</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="card-body">
+        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
+        <a class="card-link" href="#">
+          <h5 class="card-title"> {{story.title}} </h5>
+        </a>
+
+        <p class="card-text">
+          {{story.text}}
+        </p>
+      </div>
+    </div>
+
+    </ul>
+
+    <h4 *ngIf=" !stories">Loading ...</h4>
+
+    <!-- Post /////-->
+
+  </div>
+
+</div>
+</div>
