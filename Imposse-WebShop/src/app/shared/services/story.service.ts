@@ -1,23 +1,37 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Story } from '../models/story';
+import {environment} from '../../../environments/environment';
+import {AuthenticationService} from './authentication.service';
 
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'my-auth-token'})
+};
 @Injectable({
   providedIn: 'root'
 })
 export class StoryService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
 
   getStories(): Observable<Story[]> {
 
-    return this.http.get<Story[]>('https://localhost:44327/api/Story');
+    httpOptions.headers =
+      httpOptions.headers.set('Authorization', 'Bearer ' + this.authenticationService.getToken());
+
+    return this.http.get<Story[]>(environment.apiURL + '/story', httpOptions);
   }
 
   createStory(story: Story): Observable<Story> {
 
-    return this.http.post<Story>('https://localhost:44327/api/Story', story);
+    httpOptions.headers =
+      httpOptions.headers.set('Authorization', 'Bearer ' + this.authenticationService.getToken());
+
+    return this.http.post<Story>(environment.apiURL + '/story', story, httpOptions );
   }
 
 }

@@ -11,6 +11,9 @@ import {HttpClientModule} from '@angular/common/http';
 import { NavigationBarComponent } from './shared/navigationBar/navigation-bar/navigation-bar.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import {AuthGuard} from './guard/auth.guard';
+import {AuthenticationService} from './shared/services/authentication.service';
 
 
 @NgModule({
@@ -20,7 +23,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     StoryUpdateComponent,
     StoryListComponent,
     NavigationBarComponent,
-    HomePageComponent
+    HomePageComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,9 @@ import {ReactiveFormsModule} from '@angular/forms';
 
   ],
   providers: [
-    StoryService
+    StoryService,
+    AuthenticationService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

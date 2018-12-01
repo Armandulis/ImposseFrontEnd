@@ -1,0 +1,13 @@
+<button routerLink="">back</button>
+
+<label>
+  Username:
+  <input type="text" [formControl]="username">
+</label>
+
+<label>
+  password:
+  <input type="password" [formControl]="password">
+</label>
+
+<button (click)="login()">Login</button>
