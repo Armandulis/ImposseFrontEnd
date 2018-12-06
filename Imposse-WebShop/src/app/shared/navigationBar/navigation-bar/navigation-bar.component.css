@@ -3,7 +3,7 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-image: linear-gradient(to right, #000000, #B82E1F );
 }
 
 li {
