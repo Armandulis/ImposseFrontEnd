@@ -4,8 +4,6 @@ import { Observable } from 'rxjs';
 import { Story } from '../models/story';
 import {environment} from '../../../environments/environment';
 import {AuthenticationService} from './authentication.service';
-import {UserService} from './user.service';
-import {User} from '../models/user';
 
 
 const httpOptions = {

@@ -14,6 +14,10 @@ import {AuthGuard} from './guard/auth.guard';
 import {AuthenticationService} from './shared/services/authentication.service';
 import { ProfileComponent } from './profile/profile.component';
 import {UserService} from './shared/services/user.service';
+import { RegisterComponent } from './register/register.component';
+import { ProductsComponent } from './shop/products/products.component';
+import {ProductService} from './shared/services/product.service';
+import { ProductDetailsComponent } from './shop/product-details/product-details.component';
 
 
 
@@ -25,6 +29,9 @@ import {UserService} from './shared/services/user.service';
     HomePageComponent,
     LoginComponent,
     ProfileComponent,
+    RegisterComponent,
+    ProductsComponent,
+    ProductDetailsComponent,
 
 
   ],
@@ -39,6 +46,7 @@ import {UserService} from './shared/services/user.service';
     AuthenticationService,
     AuthGuard,
     UserService,
+    ProductService
   ],
   bootstrap: [AppComponent],
   entryComponents: [StoryListComponent]

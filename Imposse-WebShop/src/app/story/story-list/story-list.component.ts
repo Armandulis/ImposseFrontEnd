@@ -39,6 +39,10 @@ export class StoryListComponent implements OnInit {
 
   }
 
+  onScroll(){
+
+  }
+
   refresh() {
     this.storyService.getStories().subscribe(listOfStories => {this.stories = listOfStories;
     });

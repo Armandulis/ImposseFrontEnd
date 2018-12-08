@@ -24,4 +24,7 @@ export class NavigationBarComponent implements OnInit {
     } else { this.loggedIn = true; this.loginbutton = 'Profile'; }
   }
 
+  logout(){
+    this.authenticationService.logout();
+  }
 }

@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {AuthenticationService} from './authentication.service';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
-import {AuthenticationService} from './authentication.service';
-import {User} from '../models/user';
+import {Product} from '../models/product';
+
+
+
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,31 +17,22 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class ProductService {
 
   constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
 
-  getUserByUsername(username: string): Observable<User> {
+  getAllProducts(): Observable<Product[]> {
 
     httpOptions.headers =
       httpOptions.headers.set('Authorization', 'Bearer ' + this.authenticationService.getToken());
 
-    return this.http.get<User>(environment.apiURL + '/user/' + username,  httpOptions );
+    return this.http.get<Product[]>(environment.apiURL + '/products', httpOptions);
   }
 
-  getUsers(): Observable<User[]> {
-
+  getProduct(id: number): Observable<Product>{
     httpOptions.headers =
       httpOptions.headers.set('Authorization', 'Bearer ' + this.authenticationService.getToken());
 
-    return this.http.get<User[]>(environment.apiURL + '/user', httpOptions);
-  }
-
-  createUser(user: User): Observable<User>{
-    httpOptions.headers =
-      httpOptions.headers.set('Authorization', 'Bearer ' + this.authenticationService.getToken());
-
-    return this.http.post<User>(environment.apiURL + '/user', user, httpOptions);
-
+    return this.http.get<Product>(environment.apiURL + '/products/' + id, httpOptions);
   }
 }
