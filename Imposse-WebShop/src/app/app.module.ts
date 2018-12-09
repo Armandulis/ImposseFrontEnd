@@ -14,6 +14,10 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import {AuthGuard} from './guard/auth.guard';
 import {AuthenticationService} from './shared/services/authentication.service';
+import { ProductListComponent } from './products/product-list/product-list.component';
+import { ProductAddComponent } from './products/product-add/product-add.component';
+import { ProductUpdateComponent } from './products/product-update/product-update.component';
+import {ProductService} from "./shared/services/product.service";
 
 
 @NgModule({
@@ -24,7 +28,10 @@ import {AuthenticationService} from './shared/services/authentication.service';
     StoryListComponent,
     NavigationBarComponent,
     HomePageComponent,
-    LoginComponent
+    LoginComponent,
+    ProductListComponent,
+    ProductAddComponent,
+    ProductUpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +43,7 @@ import {AuthenticationService} from './shared/services/authentication.service';
   providers: [
     StoryService,
     AuthenticationService,
+    ProductService,
     AuthGuard
   ],
   bootstrap: [AppComponent]

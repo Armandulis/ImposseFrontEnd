@@ -1,11 +1,16 @@
-<div style="text-align:center">
-  <h1>
-    Imposse
-  </h1>
-</div>
-<div>
-<h3>Wow Look at this page</h3>
-<h3>Wow Look at this page</h3>
-<h3>Wow Look at this page</h3>
-<h3>Wow Look at this page</h3>
+<div class="alert-dark">
+
+  <form [formGroup]="storyForm" (ngSubmit)="createStory()">
+
+    <div class="card-body ">
+      <textarea formControlName="title" class="form-control"  placeholder="Storys title"></textarea>
+
+      <textarea formControlName="text" class="form-control" placeholder="What are you thinking?"></textarea>
+
+      <div class="text-right">
+        <button class="btn btn-primary" type="submit">share</button>
+      </div>
+    </div>
+  </form>
+
 </div>
