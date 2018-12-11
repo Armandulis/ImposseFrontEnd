@@ -18,6 +18,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProductsComponent } from './shop/products/products.component';
 import {ProductService} from './shared/services/product.service';
 import { ProductDetailsComponent } from './shop/product-details/product-details.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -40,6 +41,7 @@ import { ProductDetailsComponent } from './shop/product-details/product-details.
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     StoryService,

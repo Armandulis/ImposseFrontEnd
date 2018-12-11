@@ -22,3 +22,8 @@ body {
   content: none;
   display: none;
 }
+
+
+ngb-progressbar {
+  margin-top: 5rem;
+}

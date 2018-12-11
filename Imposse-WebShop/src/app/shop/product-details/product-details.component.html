@@ -1,4 +1,4 @@
-<div class="container mt-4 mb-4 col-md-12">
+<div *ngIf="product" class="container mt-4 mb-4 col-md-12">
   <div class="card">
     <div class="container-fliud">
       <div class="wrapper row">
@@ -50,4 +50,8 @@
       </div>
     </div>
   </div>
+</div>
+
+<div *ngIf=" !product" class="pr-5 pl-5 mt-5">
+  <p><ngb-progressbar type="warning" [value]="100" [striped]="true" [animated]="true"><i>Loading..</i></ngb-progressbar></p>
 </div>

@@ -21,3 +21,7 @@
     </div>
   </div>
 </div>
+
+<div *ngIf=" !products" class="pr-5 pl-5">
+  <p><ngb-progressbar type="warning" [value]="100" [striped]="true" [animated]="true"><i>Loading..</i></ngb-progressbar></p>
+</div>

@@ -5,13 +5,13 @@
 
     <div class="card-body">
 
-      <textarea formControlName="title" class="form-control"  placeholder="Story's title"></textarea>
+      <textarea formControlName="title" class="form-control" placeholder="Story's title" ></textarea>
       <h1>
       </h1>
       <textarea formControlName="text" class="form-control" placeholder="What's your Story?"></textarea>
 
       <div class="text-right">
-        <button class="btn btn-primary" type="submit">share</button>
+        <button class="btn btn-primary" type="submit" >share</button>
       </div>
 
     </div>
@@ -41,12 +41,13 @@
 
 
           <div class="ml-auto p-2 float-right">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+          <button (click)="setUpDropDown(story)" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             ..
           </button>
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <button *ngIf="currentUser == story.user.username" class="dropdown-item" type="button">Update</button>
+            <button *ngIf="currentUser == story.user.username"  class="dropdown-item" type="button" data-toggle="modal" data-target="#updateModal">Update</button>
             <button *ngIf="currentUser == story.user.username" (click)="deleteStory(story.id)" class="dropdown-item" type="button">Delete</button>
             <button class="dropdown-item" type="button">Report</button>
           </div>
@@ -84,7 +85,39 @@
 </div>
 </div>
 </div>
-<div *ngIf=" !stories" class="progress">
-  <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 100%" aria-valuenow="" aria-valuemin="0" aria-valuemax="100">Loading</div>
+<div *ngIf=" !stories" class="pr-5 pl-5">
+  <p><ngb-progressbar type="warning" [value]="100" [striped]="true" [animated]="true"><i>Loading..</i></ngb-progressbar></p>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+     <form [formGroup]="storyToUpForm" (ngSubmit)="updateStory()">
+      <div class="modal-header">
+        <h5 class="modal-title">Update Your Story</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div *ngIf="storyToUpdate" class="modal-body">
+
+
+              <h3>Title:</h3>
+              <textarea formControlName="titleToUp"  class="form-control mt-1" placeholder="Story's title"></textarea>
+              <h3>Text:</h3>
+              <textarea formControlName="textToUp" class="form-control mt-1" placeholder="What's your Story?"></textarea>
+
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" >Save changes</button>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </div>
+    </form>
+
+  </div>
+</div>
 </div>
 

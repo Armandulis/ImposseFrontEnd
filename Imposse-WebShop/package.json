@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
     "@ng-bootstrap/ng-bootstrap": "^4.0.0",
+    "angular-xeditable": "^0.9.0",
     "core-js": "^2.5.4",
     "ng6-bootstrap-modal": "^1.0.2",
     "ngx-infinite-scroll": "^6.0.1",

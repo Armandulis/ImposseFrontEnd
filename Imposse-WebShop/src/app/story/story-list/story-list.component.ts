@@ -19,10 +19,13 @@ export class StoryListComponent implements OnInit {
   storyToUpdate: Story;
 
 
-
   storyForm = new FormGroup({
     title: new FormControl(''),
     text: new FormControl(''),
+  });
+  storyToUpForm = new FormGroup({
+    titleToUp: new FormControl(''),
+    textToUp: new FormControl(''),
   });
 
   constructor(private router: Router,
@@ -38,11 +41,6 @@ export class StoryListComponent implements OnInit {
     else {this.refresh();}
 
   }
-
-  onScroll(){
-
-  }
-
   refresh() {
     this.storyService.getStories().subscribe(listOfStories => {this.stories = listOfStories;
     });
@@ -70,8 +68,18 @@ export class StoryListComponent implements OnInit {
     this.storyService.deleteStory(id).subscribe(() => this.refresh());
 
   }
-  updateStory(story: Story) {
+
+  setUpDropDown(story: Story){
     this.storyToUpdate = story;
+    this.storyToUpForm.patchValue({
+      titleToUp: this.storyToUpdate.title,
+      textToUp: this.storyToUpdate.text
+    });
+  }
+  updateStory() {
+
+    this.storyToUpdate = this.storyToUpForm.value;
+    console.log(this.storyToUpdate.id);
     this.storyService.updateStory(this.storyToUpdate).subscribe(() => this.refresh());
   }
 
