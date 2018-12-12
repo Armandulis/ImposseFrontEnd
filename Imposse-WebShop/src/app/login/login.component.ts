@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
         error => {
           this.errormessage = error.message;
           this.loading = false;
+          alert('Wrong username or password!');
         });
   }
 

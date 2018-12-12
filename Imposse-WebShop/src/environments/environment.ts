@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiURL: 'https://localhost:44327/api'
+  apiURL: 'http://impossewebshop2018.azurewebsites.net/api'
 };
 
 /*

@@ -1,23 +1,32 @@
-<div style="text-align:center">
+<div style="text-align:left">
   <h1>Register:</h1>
-
+<div [formGroup]="userForm">
   <label>
     Username:
-    <input type="text" [formControl]="username">
+    <input type="text" formControlName="username">
   </label>
 
   <label>
-    Firstname:
-    <input type="text" [formControl]="firstname">
+    First name:
+    <input type="text" formControlName="firstname">
   </label>
   <label>
-    Lastname:
-    <input type="text" [formControl]="lastname">
+    Last name:
+    <input type="text" formControlName="lastname">
   </label>
   <label>
     Email:
-    <input type="text" [formControl]="email">
+    <input type="text" formControlName="email">
   </label>
-  <button (click)="register()">Login</button>
+  <label>
+    Password:
+    <input type="password" formControlName="password">
+  </label>
+  <label>
+    Avatar link:
+    <input type="text" formControlName="picture">
+  </label>
+  <button (click)="register()">Register</button>
+</div>
 
 </div>

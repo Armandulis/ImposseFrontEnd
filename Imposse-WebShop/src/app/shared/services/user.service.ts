@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {AuthenticationService} from './authentication.service';
 import {User} from '../models/user';
+import {LoginInput} from "../models/loginInput";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -35,10 +36,14 @@ export class UserService {
   }
 
   createUser(user: User): Observable<User>{
-    httpOptions.headers =
-      httpOptions.headers.set('Authorization', 'Bearer ' + this.authenticationService.getToken());
+    //httpOptions.headers =
+      //httpOptions.headers.set('Authorization', 'Bearer ' + this.authenticationService.getToken());
 
-    return this.http.post<User>(environment.apiURL + '/user', user, httpOptions);
+    return this.http.post<User>(environment.apiURL + '/user', user);
 
+  }
+
+  addUserPassword(login: LoginInput): Observable<User>{
+    return this.http.put(environment.apiURL + '/user?password=true', login);
   }
 }

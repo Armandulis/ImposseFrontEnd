@@ -3,6 +3,7 @@
     <li (click)="checkIfLoggedIn()"><a routerLink="/">Home</a></li>
     <li (click)="checkIfLoggedIn()"><a routerLink="/product">Shop</a></li>
     <li (click)="checkIfLoggedIn()"><a routerLink="/story">Stories</a></li>
+    <li style="float: right;"><a routerLink="/register">Register</a></li>
     <li *ngIf="loggedIn==false" style="float: right;" (click)="checkIfLoggedIn()"><a routerLink="/login">{{loginbutton}}</a></li>
     <li *ngIf="loggedIn==true" style="float: right;" (click)="logout()"><a routerLink="/login">Logout</a></li>
     <li *ngIf="loggedIn==true" style="float: right;" (click)="checkIfLoggedIn()"><a routerLink="/profile">{{loginbutton}}</a></li>
