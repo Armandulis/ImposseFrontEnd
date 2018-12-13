@@ -18,6 +18,8 @@ import { RegisterComponent } from './register/register.component';
 import { ProductsComponent } from './shop/products/products.component';
 import {ProductService} from './shared/services/product.service';
 import { ProductDetailsComponent } from './shop/product-details/product-details.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {DataSharingService} from './shared/services/dataSharing.service';
 
 
 
@@ -40,13 +42,15 @@ import { ProductDetailsComponent } from './shop/product-details/product-details.
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     StoryService,
     AuthenticationService,
     AuthGuard,
     UserService,
-    ProductService
+    ProductService,
+    DataSharingService
   ],
   bootstrap: [AppComponent],
   entryComponents: [StoryListComponent]

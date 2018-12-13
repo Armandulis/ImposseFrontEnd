@@ -35,4 +35,21 @@ export class ProductService {
 
     return this.http.get<Product>(environment.apiURL + '/products/' + id, httpOptions);
   }
+
+  deleteProduct(id: number){
+
+    httpOptions.headers =
+      httpOptions.headers.set('Authorization', 'Bearer ' + this.authenticationService.getToken());
+
+    return this.http.delete(environment.apiURL + '/products/' + id, httpOptions);
+
+  }
+
+  updateProduct(product: Product): Observable<Product>{
+    httpOptions.headers =
+      httpOptions.headers.set('Authorization', 'Bearer ' + this.authenticationService.getToken());
+
+    return this.http.put<Product>(environment.apiURL + '/products/' + product.id, product, httpOptions);
+  }
+
 }

@@ -1,53 +1,135 @@
-<div class="container mt-4 mb-4 col-md-12">
-  <div class="card">
+<div *ngIf="product" class="container mt-4 mb-4 col-md-12">
+  <div class="card" >
     <div class="container-fliud">
       <div class="wrapper row">
         <div class="preview col-md-6">
 
 
 
-            <div class="tab-pane active pl-4 mt-3 pr-1 mb-3" id="pic-1">
-              <img class="img-thumbnail" src="{{product.picture}}" />
+          <div class="tab-pane active pl-4 mt-3 pr-1 mb-3" id="pic-1">
+            <img style="max-height: 500px;" class="img-thumbnail" src="{{product.picture}}"  />
 
-            </div>
+          </div>
 
         </div>
 
-          <div class="details col-md-6">
-            <ul class="list-group list-group-flush">
-              <h1 class="product-title list-group-item">{{product.name}}</h1>
-              <div class="rating">
-                <div class="stars">
-                  <!-- FIX THIS WHEN REVIEWS WILL BE IMPLEMENTED-->
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star"></span>
-                  <span class="fa fa-star"></span>
-                </div>
-                <span class="review-no">41 reviews</span>
+        <div class="details col-md-6">
+          <ul class="list-group list-group-flush">
+            <h1 class="product-title list-group-item">{{product.name}}</h1>
+            <div class="rating">
+              <div class="stars">
+                <!-- FIX THIS WHEN REVIEWS WILL BE IMPLEMENTED-->
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
               </div>
-              <h3 class="list-group-item">
+              <span class="review-no">{{amountofReviews}}</span>
+            </div>
+            <h3 class="list-group-item">
               <p class="product-description "> {{product.description}}</p>
-              </h3>
-              <h4 class="price">current price: <span>{{product.price}}</span></h4>
-              <h5 class="sizes">sizes:
-                <!-- HERE SHOULD BE SIZES-->
-                <span class="size" data-toggle="tooltip" title="small">s</span>
-                <span class="size" data-toggle="tooltip" title="medium">m</span>
-                <span class="size" data-toggle="tooltip" title="large">l</span>
-                <span class="size" data-toggle="tooltip" title="xtra large">xl</span>
-              </h5>
-              <h5 class="colors">colors:
-                <!-- HERE SHOULD BE COLORS-->
-              </h5>
-              <div class="action">
-                <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+            </h3>
+            <h4 class="price">current price: <span>{{product.price}}</span></h4>
+
+            <div class="form-group">
+            <label for="sizes" class="sizes">sizes: </label>
+              <!-- HERE SHOULD BE SIZES-->
+              <select style="height: 30px" id="sizes" class="form-control" required>
+                <option value="">XS</option>
+                <option value="1">S</option>
+                <option value="2">M</option>
+                <option value="3">L</option>
+                <option value="3">XL</option>
+              </select>
+            </div>
+            <h5 class="colors">colors:
+              <!-- HERE SHOULD BE COLORS-->
+            </h5>
+            <div class="action">
+              <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+            </div>
+            <div *ngIf="currentUser != null">
+              <div *ngIf="currentUser.isAdmin == true"  class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                  <button  type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateModal" >Update Product</button>
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="Second group">
+                  <button (click)="deleteProduct(product.id)" type="button" class="btn btn-danger">Delete Product</button>
+                </div>
               </div>
-            </ul>
-          </div>
+            </div>
+          </ul>
+        </div>
 
       </div>
     </div>
   </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <form [formGroup]="productToUpdateForm" (ngSubmit)="updateProduct()">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Product</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div *ngIf="product" class="modal-body" >
+
+          <label>Name</label>
+          <input formControlName="nameToUpdate" type="text" class="form-control is-valid" placeholder="Name:">
+
+          <label>Picture:</label>
+          <input formControlName="pictureToUpdate" type="text" class="form-control is-valid" placeholder="Picture's link:">
+
+          <label>Description:</label>
+          <textarea formControlName="descriptionToUpdate" class="form-control mt-1" style="height: 100px;" placeholder="What's your Story?"></textarea>
+
+
+            <label for="inputState">Gender:</label>
+              <select style="height: 30px;" formControlName="genderToUpdate"id="inputState"   class="form-control">
+                <option>Female</option>
+                <option>Male</option>
+                <option>Unisex</option>
+              </select>
+
+          <div class="form-row">
+
+            <div class="form-group pr-2">
+              <label>Price:</label>
+              <div class="input-group-prepend">
+                <span class="input-group-text">Euros:</span>
+                <input formControlName="priceToUpdate" type="number" class="form-control is-valid" placeholder="Price:">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Type:</label>
+              <input formControlName="typeToUpdate" type="text" class="form-control is-valid" placeholder="Price:">
+            </div>
+
+          </div>
+          <label>Color:</label>
+          <input formControlName="colorToUpdate" type="text" class="form-control is-valid" placeholder="Color:">
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf=" !product" class="pr-5 pl-5 mt-5">
+  <p><ngb-progressbar type="warning" [value]="100" [striped]="true" [animated]="true"><i>Loading..</i></ngb-progressbar></p>
 </div>
