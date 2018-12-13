@@ -29,7 +29,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.userService.getUsernames().subscribe( data => {
       this.usernames = data;
-      debugger;
     });
   }
 
