@@ -43,6 +43,15 @@ export class UserService {
 
   }
 
+  getUserFromToken(){
+
+    httpOptions.headers =
+      httpOptions.headers.set('Authorization', 'Bearer ' + this.authenticationService.getToken());
+    const username = this.authenticationService.getUsername();
+
+    return this.http.get<User>(environment.apiURL + '/user/' + username,  httpOptions );
+  }
+
   addUserPassword(login: LoginInput): Observable<User>{
     return this.http.put(environment.apiURL + '/user?password=true', login);
   }

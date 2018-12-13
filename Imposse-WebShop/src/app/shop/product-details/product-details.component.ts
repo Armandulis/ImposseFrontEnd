@@ -6,6 +6,8 @@ import {User} from '../../shared/models/user';
 import {AuthenticationService} from '../../shared/services/authentication.service';
 import {UserService} from '../../shared/services/user.service';
 import {FormControl, FormGroup} from '@angular/forms';
+import {forEach} from '@angular/router/src/utils/collection';
+import {Review} from '../../shared/models/review';
 
 @Component({
   selector: 'app-product-details',
@@ -13,10 +15,12 @@ import {FormControl, FormGroup} from '@angular/forms';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
-
+  reviews: Review[];
   product: Product;
   currentUser: User;
-
+  startRating: number;
+  averageRating: number;
+  amountofReviews: number;
   productToUpdateForm = new FormGroup({
     nameToUpdate: new FormControl(''),
     pictureToUpdate: new FormControl(''),
@@ -40,10 +44,19 @@ export class ProductDetailsComponent implements OnInit {
 
   }
 
-  getProduct(){
+  getProduct() {
+    this.startRating = 0;
+    this.amountofReviews = 0;
+    this.averageRating = 0;
     const id = +this.route.snapshot.paramMap.get('id');
     this.productService.getProduct(id).subscribe(productID => {
       this.product = productID;
+      productID.reviews.forEach(review => {
+        this.startRating = this.startRating + review.rating;
+        this.amountofReviews++;
+      });
+      this.averageRating = this.startRating / this.amountofReviews;
+
 
       this.productToUpdateForm.patchValue({
         nameToUpdate: productID.name,

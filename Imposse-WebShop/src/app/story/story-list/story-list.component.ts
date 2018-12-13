@@ -91,6 +91,7 @@ export class StoryListComponent implements OnInit {
   getCurrentUser(){
     if (this.authenticationService.getUsername() != null){
 
+
       this.userService.getUserByUsername(this.authenticationService.getUsername())
         .subscribe(usertoget => {
           this.currentUser = usertoget;

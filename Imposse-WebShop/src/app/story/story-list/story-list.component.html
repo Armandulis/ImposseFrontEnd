@@ -39,18 +39,18 @@
 
             <div class="h7 p-2">{{story.user.username}}</div>
 
-
-            <div class="ml-auto p-2 float-right">
+            <div class="ml-auto p-2 float-right" style="position:relative;">
 
               <button (click)="setUpDropDown(story)" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 ..
               </button>
 
-              <div *ngIf="currentUser != null" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <div style="right: 0; left: auto;" *ngIf="currentUser != null" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <button *ngIf="currentUser.username == story.user.username"  class="dropdown-item" type="button" data-toggle="modal" data-target="#updateModal">Update</button>
                 <button *ngIf="currentUser.username == story.user.username || currentUser.isAdmin == true" (click)="deleteStory(story.id)" class="dropdown-item" type="button">Delete</button>
                 <button class="dropdown-item" type="button">Report</button>
               </div>
+
             </div>
           </div>
         </div>

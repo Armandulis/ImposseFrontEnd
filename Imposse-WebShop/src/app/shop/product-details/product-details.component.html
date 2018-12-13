@@ -25,7 +25,7 @@
                 <span class="fa fa-star"></span>
                 <span class="fa fa-star"></span>
               </div>
-              <span class="review-no">41 reviews</span>
+              <span class="review-no">{{amountofReviews}}</span>
             </div>
             <h3 class="list-group-item">
               <p class="product-description "> {{product.description}}</p>
@@ -35,11 +35,12 @@
             <div class="form-group">
             <label for="sizes" class="sizes">sizes: </label>
               <!-- HERE SHOULD BE SIZES-->
-              <select  id="sizes" class="custom-select" required>
-                <option value="">X</option>
-                <option value="1">XL</option>
-                <option value="2">S</option>
-                <option value="3">M</option>
+              <select style="height: 30px" id="sizes" class="form-control" required>
+                <option value="">XS</option>
+                <option value="1">S</option>
+                <option value="2">M</option>
+                <option value="3">L</option>
+                <option value="3">XL</option>
               </select>
             </div>
             <h5 class="colors">colors:

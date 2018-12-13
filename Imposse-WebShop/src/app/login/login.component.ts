@@ -3,6 +3,7 @@ import {FormControl} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../shared/services/authentication.service';
 import {DataSharingService} from '../shared/services/dataSharing.service';
+import {UserService} from '../shared/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
-              private dataSharingService: DataSharingService
+              private dataSharingService: DataSharingService,
+              private userService: UserService
               ) { }
 
   ngOnInit() {
