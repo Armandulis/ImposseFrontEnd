@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../shared/services/authentication.service';
+import {DataSharingService} from '../shared/services/dataSharing.service';
 
 @Component({
   selector: 'app-login',
@@ -17,10 +18,12 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
+              private dataSharingService: DataSharingService
               ) { }
 
   ngOnInit() {
     this.authenticationService.logout();
+    this.dataSharingService.isUserLoggedIn.next(false);
   }
 
   login() {
@@ -29,6 +32,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.username.value, this.password.value)
       .subscribe(
         success => {
+          this.dataSharingService.isUserLoggedIn.next(true);
           this.router.navigate(['/profile']);
         },
         error => {

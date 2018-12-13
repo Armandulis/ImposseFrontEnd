@@ -27,22 +27,21 @@ export class RegisterComponent implements OnInit {
 
   register(){
     const user = this.userForm.value;
-    this.userService.createUser(user).subscribe(
-      success => {
-        let login = new LoginInput();
-        login.username = this.userForm.controls.username.value;
-        login.password = this.userForm.controls.password.value;
-        this.userService.addUserPassword(login).subscribe(
-          success => {
-            alert('You are registered, you can now log in');
-            this.router.navigate(['/login'])
-          }
-
-        );
-      },
-      error => {
-        alert('something went wrong');
-      });
+         this.userService.createUser(user).subscribe(
+           success => {
+             let login = new LoginInput();
+             login.username = this.userForm.controls.username.value;
+             login.password = this.userForm.controls.password.value;
+             this.userService.addUserPassword(login).subscribe(
+               success => {
+                 alert('You are registered, you can now log in');
+                 this.router.navigate(['/login']);
+               }
+             );
+           },
+           error => {
+             alert('something went wrong');
+           });
   }
 
 }

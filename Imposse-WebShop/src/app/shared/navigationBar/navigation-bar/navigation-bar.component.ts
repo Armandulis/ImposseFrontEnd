@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../../services/authentication.service';
+import {DataSharingService} from '../../services/dataSharing.service';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -8,20 +9,20 @@ import {AuthenticationService} from '../../services/authentication.service';
 })
 export class NavigationBarComponent implements OnInit {
 
-  loginbutton = 'Login';
-  loggedIn: boolean;
-  constructor(private authenticationService: AuthenticationService) { }
+  isUserLoggedIn: boolean;
+  constructor(private authenticationService: AuthenticationService,
+              private dataSharingService: DataSharingService) {
+
+    this.dataSharingService.isUserLoggedIn.subscribe( value => {
+      this.isUserLoggedIn = value;
+    });
+  }
 
   ngOnInit() {
-    this.checkIfLoggedIn();
+    if (this.authenticationService.getToken()){
+      this.isUserLoggedIn = true;
+    }
 
-  }
-  checkIfLoggedIn() {
-
-    if (this.authenticationService.getToken() == null) {
-      this.loggedIn = false;
-      this.loginbutton = 'Login';
-    } else { this.loggedIn = true; this.loginbutton = 'Profile'; }
   }
 
   logout(){
