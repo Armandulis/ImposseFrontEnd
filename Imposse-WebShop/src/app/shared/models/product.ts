@@ -1,10 +1,13 @@
+import {Review} from './review';
+
 export class Product {
   id?: number;
- Name: string;
- Picture?: any;
- Price: number;
- Gender: string;
- Color: string;
-Type: string;
- Review?: object;
+  name: string;
+  picture: string;
+  price: number;
+  description: string;
+  gender?: string;
+  color: string;
+  type?: string;
+  reviews: Review[];
 }

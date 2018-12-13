@@ -4,15 +4,19 @@ import {StoryListComponent} from './story/story-list/story-list.component';
 import {HomePageComponent} from './home-page/home-page.component';
 import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './guard/auth.guard';
-import {ProductListComponent} from "./products/product-list/product-list.component";
-import {ProductAddComponent} from "./products/product-add/product-add.component";
+import {ProfileComponent} from './profile/profile.component';
+import {ProductsComponent} from './shop/products/products.component';
+import {ProductDetailsComponent} from './shop/product-details/product-details.component';
+import {RegisterComponent} from "./register/register.component";
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
-  {path: 'product', component: ProductListComponent},
-  {path: 'product-add', component: ProductAddComponent},
+  {path: 'product', component: ProductsComponent},
+  {path: 'product/:id', component: ProductDetailsComponent},
   {path: 'story', component: StoryListComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'register', component: RegisterComponent}
 ];
 
 @NgModule({

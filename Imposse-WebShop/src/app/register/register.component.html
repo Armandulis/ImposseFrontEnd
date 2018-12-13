@@ -1,0 +1,32 @@
+<div style="text-align:left">
+  <h1>Register:</h1>
+<div [formGroup]="userForm">
+  <label>
+    Username:
+    <input (keyup)="onKeyPress()" [(ngModel)]="username" type="text" formControlName="username">
+  </label>
+  <p *ngIf="nameExists">This username is taken!</p>
+  <label>
+    First name:
+    <input type="text" formControlName="firstname">
+  </label>
+  <label>
+    Last name:
+    <input type="text" formControlName="lastname">
+  </label>
+  <label>
+    Email:
+    <input type="text" formControlName="email">
+  </label>
+  <label>
+    Password:
+    <input type="password" formControlName="password">
+  </label>
+  <label>
+    Avatar link:
+    <input type="text" formControlName="picture">
+  </label>
+  <button [disabled]="nameExists" (click)="register()">Register</button>
+</div>
+
+</div>

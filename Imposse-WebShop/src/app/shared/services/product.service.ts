@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {AuthenticationService} from "./authentication.service";
-import {Observable} from "rxjs";
-import {Story} from "../models/story";
-import {environment} from "../../../environments/environment";
-import {Product} from "../models/product";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {AuthenticationService} from './authentication.service';
+import {Observable} from 'rxjs';
+import {environment} from '../../../environments/environment';
+import {Product} from '../models/product';
+
+
+
 
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': 'my-auth-token'})
 };
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,20 +21,35 @@ export class ProductService {
 
   constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
 
-  getProducts(): Observable<Product[]> {
+  getAllProducts(): Observable<Product[]> {
 
     httpOptions.headers =
       httpOptions.headers.set('Authorization', 'Bearer ' + this.authenticationService.getToken());
 
-    return this.http.get<Product[]>(environment.apiURL + '/product', httpOptions);
+    return this.http.get<Product[]>(environment.apiURL + '/products', httpOptions);
   }
 
-  createProduct(product: Product): Observable<Product> {
+  getProduct(id: number): Observable<Product>{
+    httpOptions.headers =
+      httpOptions.headers.set('Authorization', 'Bearer ' + this.authenticationService.getToken());
+
+    return this.http.get<Product>(environment.apiURL + '/products/' + id, httpOptions);
+  }
+
+  deleteProduct(id: number){
 
     httpOptions.headers =
       httpOptions.headers.set('Authorization', 'Bearer ' + this.authenticationService.getToken());
 
-    return this.http.post<Product>(environment.apiURL + '/product', product, httpOptions );
+    return this.http.delete(environment.apiURL + '/products/' + id, httpOptions);
+
+  }
+
+  updateProduct(product: Product): Observable<Product>{
+    httpOptions.headers =
+      httpOptions.headers.set('Authorization', 'Bearer ' + this.authenticationService.getToken());
+
+    return this.http.put<Product>(environment.apiURL + '/products/' + product.id, product, httpOptions);
   }
 
 }
