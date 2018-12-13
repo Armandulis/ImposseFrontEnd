@@ -27,6 +27,11 @@ export class UserService {
     return this.http.get<User>(environment.apiURL + '/user/' + username,  httpOptions );
   }
 
+  getUsernames(): Observable<Array<string>> {
+
+    return this.http.get<Array<string>>(environment.apiURL + '/user/usernames');
+  }
+
   getUsers(): Observable<User[]> {
 
     httpOptions.headers =

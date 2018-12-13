@@ -3,9 +3,9 @@
 <div [formGroup]="userForm">
   <label>
     Username:
-    <input type="text" formControlName="username">
+    <input (keyup)="onKeyPress()" [(ngModel)]="username" type="text" formControlName="username">
   </label>
-
+  <p *ngIf="nameExists">This username is taken!</p>
   <label>
     First name:
     <input type="text" formControlName="firstname">
@@ -26,7 +26,7 @@
     Avatar link:
     <input type="text" formControlName="picture">
   </label>
-  <button (click)="register()">Register</button>
+  <button [disabled]="nameExists" (click)="register()">Register</button>
 </div>
 
 </div>

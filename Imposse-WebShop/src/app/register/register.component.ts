@@ -11,6 +11,10 @@ import {Router} from "@angular/router";
 })
 export class RegisterComponent implements OnInit {
 
+  usernames : Array<string>;
+  username: string;
+  nameExists: boolean;
+
   userForm = new FormGroup({
     username: new FormControl(''),
     firstname: new FormControl(''),
@@ -23,6 +27,14 @@ export class RegisterComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
+    this.userService.getUsernames().subscribe( data => {
+      this.usernames = data;
+      debugger;
+    });
+  }
+
+  onKeyPress(){
+    this.nameExists = this.usernames.includes(this.username);
   }
 
   register(){
