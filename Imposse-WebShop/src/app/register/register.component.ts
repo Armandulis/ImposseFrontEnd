@@ -3,6 +3,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {UserService} from '../shared/services/user.service';
 import {LoginInput} from "../shared/models/loginInput";
 import {Router} from "@angular/router";
+import {BasketService} from "../shared/services/basket.service";
 
 @Component({
   selector: 'app-register',
@@ -12,8 +13,8 @@ import {Router} from "@angular/router";
 export class RegisterComponent implements OnInit {
 
   usernames : Array<string>;
-  username: string;
   nameExists: boolean;
+  loading: boolean = true;
 
   userForm = new FormGroup({
     username: new FormControl(''),
@@ -24,16 +25,17 @@ export class RegisterComponent implements OnInit {
     picture: new FormControl('')
   });
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private basketService: BasketService) { }
 
   ngOnInit() {
     this.userService.getUsernames().subscribe( data => {
       this.usernames = data;
+      this.loading = false;
     });
   }
 
   onKeyPress(){
-    this.nameExists = this.usernames.includes(this.username);
+    this.nameExists = this.usernames.includes(this.userForm.controls.username.value);
   }
 
   register(){
@@ -44,7 +46,7 @@ export class RegisterComponent implements OnInit {
              login.username = this.userForm.controls.username.value;
              login.password = this.userForm.controls.password.value;
              this.userService.addUserPassword(login).subscribe(
-               success => {
+               user => {
                  alert('You are registered, you can now log in');
                  this.router.navigate(['/login']);
                }

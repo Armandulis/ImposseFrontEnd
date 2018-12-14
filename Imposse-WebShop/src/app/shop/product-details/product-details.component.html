@@ -47,7 +47,7 @@
               <!-- HERE SHOULD BE COLORS-->
             </h5>
             <div class="action">
-              <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+              <button (click)="addToBasket()" class="add-to-cart btn btn-default" type="button">Add to basket</button>
             </div>
             <div *ngIf="currentUser != null">
               <div *ngIf="currentUser.isAdmin == true"  class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
