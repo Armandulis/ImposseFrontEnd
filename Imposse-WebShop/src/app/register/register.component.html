@@ -1,9 +1,10 @@
-<div style="text-align:left">
+<div *ngIf="!loading" style="text-align:left">
   <h1>Register:</h1>
 <div [formGroup]="userForm">
   <label>
     Username:
     <input (keyup)="onKeyPress()" [(ngModel)]="username" type="text" formControlName="username">
+
   </label>
   <p *ngIf="nameExists">This username is taken!</p>
   <label>

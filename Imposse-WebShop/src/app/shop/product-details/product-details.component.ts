@@ -8,6 +8,7 @@ import {UserService} from '../../shared/services/user.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {forEach} from '@angular/router/src/utils/collection';
 import {Review} from '../../shared/models/review';
+import {BasketService} from "../../shared/services/basket.service";
 
 @Component({
   selector: 'app-product-details',
@@ -35,7 +36,8 @@ export class ProductDetailsComponent implements OnInit {
               private router: Router,
               private productService: ProductService,
               private authenticationService: AuthenticationService,
-              private userService: UserService) { }
+              private userService: UserService,
+              private basketService: BasketService) { }
 
   ngOnInit() {
       this.getProduct();
@@ -81,6 +83,12 @@ export class ProductDetailsComponent implements OnInit {
         });
     }
 
+  }
+
+  addToBasket(){
+    this.basketService.addToBasket(this.product,this.currentUser.id).subscribe(success =>{
+      alert('Product added to basket');
+    })
   }
 
   deleteProduct(id: number){

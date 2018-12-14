@@ -20,6 +20,7 @@ import {ProductService} from './shared/services/product.service';
 import { ProductDetailsComponent } from './shop/product-details/product-details.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {DataSharingService} from './shared/services/dataSharing.service';
+import { BasketComponent } from './basket/basket.component';
 
 
 
@@ -34,6 +35,7 @@ import {DataSharingService} from './shared/services/dataSharing.service';
     RegisterComponent,
     ProductsComponent,
     ProductDetailsComponent,
+    BasketComponent,
 
 
   ],
