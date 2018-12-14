@@ -1,5 +1,7 @@
-
-<div class="card-group ">
+<div class="media mt-2 pl-2">
+  <button class="btn btn-secondary" data-toggle="modal" data-target="#createModal">Create Product</button>
+</div>
+  <div class="card-group ">
   <div *ngFor="let product of products">
 
     <div class="pl-5 mt-5 pr-2">
@@ -22,6 +24,70 @@
     </div>
   </div>
 </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <form [formGroup]="productForm" (ngSubmit)="createProduct()">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Product</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+
+          <label>Name</label>
+          <input formControlName="name" type="text" class="form-control is-valid" placeholder="Name:">
+
+          <label>Picture:</label>
+          <input formControlName="picture" type="text" class="form-control is-valid" placeholder="Picture's link:">
+
+          <label>Description:</label>
+          <textarea formControlName="description" class="form-control mt-1" style="height: 100px;" placeholder="What's your Story?"></textarea>
+
+
+          <label for="inputState">Gender:</label>
+          <select style="height: 30px;" formControlName="gender"id="inputState"   class="form-control">
+            <option>Female</option>
+            <option>Male</option>
+            <option>Unisex</option>
+          </select>
+
+          <div class="form-row">
+
+            <div class="form-group pr-2">
+              <label>Price:</label>
+              <div class="input-group-prepend">
+                <span class="input-group-text">Euros:</span>
+                <input formControlName="price" type="number" class="form-control is-valid" placeholder="Price:">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Type:</label>
+              <input formControlName="type" type="text" class="form-control is-valid" placeholder="Price:">
+            </div>
+
+          </div>
+          <label>Color:</label>
+          <input formControlName="color" type="text" class="form-control is-valid" placeholder="Color:">
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Creat Product</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
 <div *ngIf=" !products" class="pr-5 pl-5">
   <p><ngb-progressbar type="warning" [value]="100" [striped]="true" [animated]="true"><i>Loading..</i></ngb-progressbar></p>
 </div>

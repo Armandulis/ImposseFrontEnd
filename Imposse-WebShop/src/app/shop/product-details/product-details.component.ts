@@ -51,11 +51,12 @@ export class ProductDetailsComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.productService.getProduct(id).subscribe(productID => {
       this.product = productID;
-      productID.reviews.forEach(review => {
+      if(productID.reviews != null){
+        this.product.reviews.forEach(review => {
         this.startRating = this.startRating + review.rating;
         this.amountofReviews++;
       });
-      this.averageRating = this.startRating / this.amountofReviews;
+      this.averageRating = this.startRating / this.amountofReviews;}
 
 
       this.productToUpdateForm.patchValue({

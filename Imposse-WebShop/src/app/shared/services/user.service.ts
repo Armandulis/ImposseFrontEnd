@@ -5,6 +5,7 @@ import {environment} from '../../../environments/environment';
 import {AuthenticationService} from './authentication.service';
 import {User} from '../models/user';
 import {LoginInput} from "../models/loginInput";
+import {observableToBeFn} from 'rxjs/internal/testing/TestScheduler';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -25,6 +26,11 @@ export class UserService {
       httpOptions.headers.set('Authorization', 'Bearer ' + this.authenticationService.getToken());
 
     return this.http.get<User>(environment.apiURL + '/user/' + username,  httpOptions );
+  }
+
+  getUsernames(): Observable<Array<string>> {
+
+    return this.http.get<Array<string>>(environment.apiURL + '/user/usernames');
   }
 
   getUsers(): Observable<User[]> {
@@ -54,5 +60,12 @@ export class UserService {
 
   addUserPassword(login: LoginInput): Observable<User>{
     return this.http.put(environment.apiURL + '/user?password=true', login);
+  }
+
+  updateUSer(user: User): Observable<User>{
+    httpOptions.headers =
+      httpOptions.headers.set('Authorization', 'Bearer ' + this.authenticationService.getToken());
+
+    return this.http.put<User>(environment.apiURL + '/user/' + user.id, user, httpOptions);
   }
 }

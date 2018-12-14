@@ -1,45 +1,30 @@
-<div style="text-align:center">
-  <h1>
-    Imposse
-  </h1>
-</div>
-<div>
-<h3>Wow Look at this page</h3>
-<h3>Wow Look at this page</h3>
-<h3>Wow Look at this page</h3>
-<h3>Wow Look at this page</h3>
-</div>
-<div>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateModal">
-  Launch demo modal
-</button>
 
+<h1 style="align-items: center">Imposse</h1>
+<div class="container">
 
-<!-- Modal -->
-<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div>
-          <h3>Wow Look at this page</h3>
-          <h3>Wow Look at this page</h3>
-          <h3>Wow Look at this page</h3>
-          <h3>Wow Look at this page</h3>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+  <ngb-carousel *ngIf="images" class=" mt-3 offset-md-1 " style="max-width: 900px;" >
+    <ng-template ngbSlide>
+      <a routerLink="/story"> <img [src]="images[0]" alt="Random first slide"> </a>
+      <div class="carousel-caption">
+        <h3>Stories</h3>
 
+        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <img [src]="images[1]" alt="Random second slide">
+      <div class="carousel-caption">
+        <h3>Second slide label</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <img [src]="images[2]" alt="Random third slide">
+      <div class="carousel-caption">
+        <h3>Third slide label</h3>
+        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+
+</div>

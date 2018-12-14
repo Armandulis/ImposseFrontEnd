@@ -4,6 +4,7 @@ import {AuthenticationService} from './authentication.service';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {Product} from '../models/product';
+import {Story} from '../models/story';
 
 
 
@@ -50,6 +51,12 @@ export class ProductService {
       httpOptions.headers.set('Authorization', 'Bearer ' + this.authenticationService.getToken());
 
     return this.http.put<Product>(environment.apiURL + '/products/' + product.id, product, httpOptions);
+  }
+  createProduct(product: Product): Observable<Product>{
+    httpOptions.headers =
+      httpOptions.headers.set('Authorization', 'Bearer ' + this.authenticationService.getToken());
+
+    return this.http.post<Product>(environment.apiURL + '/products', product, httpOptions);
   }
 
 }

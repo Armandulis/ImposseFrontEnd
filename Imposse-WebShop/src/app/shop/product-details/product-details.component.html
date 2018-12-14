@@ -19,7 +19,7 @@
             <div class="rating">
               <div class="stars">
                 <!-- FIX THIS WHEN REVIEWS WILL BE IMPLEMENTED-->
-                <span class="fa fa-star checked"></span>
+                <span *ngIf="averageRating == 1"  class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star"></span>
@@ -61,7 +61,6 @@
             </div>
           </ul>
         </div>
-
       </div>
     </div>
   </div>
