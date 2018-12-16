@@ -1,0 +1,29 @@
+
+<div class="card-group ">
+  <div *ngFor="let product of products">
+
+    <div class="pl-5 mt-5 pr-2">
+      <div class="card" style="width: 30rem;" >
+
+        <a routerLink="/product/{{product.id}}">
+          <img class="card-img-top pl-1 mt-1 pr-1"  src="{{product.picture}}" alt="Card image cap" >
+        </a>
+        <style>
+          .card-img-top {
+            height: 300px;
+          }
+        </style>
+        <div class="card-body">
+          <h1 class="card-title">{{product.name}}</h1>
+          <p class="card-text">Price: {{product.price}}</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf=" !products" class="pr-5 pl-5">
+  <p><ngb-progressbar type="warning" [value]="100" [striped]="true" [animated]="true"><i>Loading..</i></ngb-progressbar></p>
+</div>
+
+

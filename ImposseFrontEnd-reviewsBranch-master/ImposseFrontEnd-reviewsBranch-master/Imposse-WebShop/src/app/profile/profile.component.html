@@ -1,0 +1,83 @@
+<div *ngIf="user" style="text-align:center">
+<h1>Your Profile:</h1>
+<div class="p-2">
+  <img class="circle" width="45" src="{{user.picture}}" alt="">
+  <style>
+    .circle {
+      height: 100px;
+      width: 100px;
+      background-color: #555;
+      border-radius: 50%;
+    }
+  </style>
+</div>
+<h1>Username: {{user.username}}</h1>
+<h1>Firstname: {{user.firstname}}</h1>
+<h1>Lastname: {{user.lastname}}</h1>
+<h1>Email: {{user.email}}</h1>
+</div>
+
+
+
+<!-- Modal
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <form [formGroup]="productToUpdateForm" (ngSubmit)="updateProduct()">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Profile</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div *ngIf="product" class="modal-body" >
+
+          <label>Name</label>
+          <input formControlName="nameToUpdate" type="text" class="form-control is-valid" placeholder="Name:">
+
+          <label>Picture:</label>
+          <input formControlName="pictureToUpdate" type="text" class="form-control is-valid" placeholder="Picture's link:">
+
+          <label>Description:</label>
+          <textarea formControlName="descriptionToUpdate" class="form-control mt-1" style="height: 100px;" placeholder="What's your Story?"></textarea>
+
+
+          <label for="inputState">Gender:</label>
+          <select style="height: 30px;" formControlName="genderToUpdate"id="inputState"   class="form-control">
+            <option>Female</option>
+            <option>Male</option>
+            <option>Unisex</option>
+          </select>
+
+          <div class="form-row">
+
+            <div class="form-group pr-2">
+              <label>Price:</label>
+              <div class="input-group-prepend">
+                <span class="input-group-text">Euros:</span>
+                <input formControlName="priceToUpdate" type="number" class="form-control is-valid" placeholder="Price:">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Type:</label>
+              <input formControlName="typeToUpdate" type="text" class="form-control is-valid" placeholder="Price:">
+            </div>
+
+          </div>
+          <label>Color:</label>
+          <input formControlName="colorToUpdate" type="text" class="form-control is-valid" placeholder="Color:">
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+-->
