@@ -1,33 +1,46 @@
+<body>
 <div *ngIf="!loading" style="text-align:left">
-  <h1>Register:</h1>
-<div [formGroup]="userForm">
-  <label>
-    Username:
-    <input (keyup)="onKeyPress()" [(ngModel)]="username" type="text" formControlName="username">
 
-  </label>
-  <p *ngIf="nameExists">This username is taken!</p>
-  <label>
-    First name:
-    <input type="text" formControlName="firstname">
-  </label>
-  <label>
-    Last name:
-    <input type="text" formControlName="lastname">
-  </label>
-  <label>
-    Email:
-    <input type="text" formControlName="email">
-  </label>
-  <label>
-    Password:
-    <input type="password" formControlName="password">
-  </label>
-  <label>
-    Avatar link:
-    <input type="text" formControlName="picture">
-  </label>
-  <button [disabled]="nameExists" (click)="register()">Register</button>
+  <div class="container">
+  <div class="card text-center">
+    <form [formGroup]="userForm">
+    <div class="card-header">
+      Create Profile
+    </div>
+    <div class="card-body">
+
+
+      <label>Username</label>
+      <input class="form-control is-valid" (keyup)="onKeyPress()" [(ngModel)]="username" type="text" formControlName="username" placeholder="Username:">
+      <p *ngIf="nameExists">This username is taken!</p>
+
+      <label>First name:</label>
+      <input formControlName="firstname" type="text" class="form-control is-valid" placeholder="First name:">
+
+      <label>Last name:</label>
+      <input formControlName="lastname" type="text" class="form-control is-valid" placeholder="Last name:">
+
+      <label> Email:</label>
+      <input formControlName="email" type="text" class="form-control is-valid" placeholder="Email:">
+
+      <label> Password:</label>
+      <input formControlName="password" type="password" class="form-control is-valid" placeholder="Password:">
+
+      <label> Avatar link::</label>
+      <input formControlName="picture" type="text" class="form-control is-valid" placeholder="Avatar link::">
+
+
+    </div>
+    <div class="card-footer">
+      <div class="float right">
+      <button class="btn btn-secondary" [disabled]="nameExists" (click)="register()">Register</button>
+      </div>
+    </div>
+    </form>
+  </div>
+
+  </div>
 </div>
 
-</div>
+
+</body>

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {ProductService} from '../../shared/services/product.service';
 import {Product} from '../../shared/models/product';
 import {FormControl, FormGroup} from '@angular/forms';
+import {UserService} from '../../shared/services/user.service';
+import {User} from '../../shared/models/user';
+import {AuthenticationService} from '../../shared/services/authentication.service';
 
 @Component({
   selector: 'app-products',
@@ -11,6 +14,8 @@ import {FormControl, FormGroup} from '@angular/forms';
 export class ProductsComponent implements OnInit {
 
   products: Product[];
+
+  user: User;
 
   product: Product;
   productForm = new FormGroup({
@@ -23,7 +28,7 @@ export class ProductsComponent implements OnInit {
     type: new FormControl('')
   });
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private userService: UserService, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     this.getAllProducts();
@@ -31,6 +36,8 @@ export class ProductsComponent implements OnInit {
 
   getAllProducts(){
     this.productService.getAllProducts().subscribe(list => this.products = list);
+    if (this.authenticationService.getToken() != null){
+    this.userService.getUserFromToken().subscribe(user => this.user = user);}
   }
   createProduct(){
     this.product = this.productForm.value;

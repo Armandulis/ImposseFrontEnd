@@ -1,0 +1,22 @@
+.parallax {
+  /* The image used */
+  /* background-image: url("https://i.ytimg.com/vi/wFPhWGAjpQ4/maxresdefault.jpg"); */
+  background-image: url("https://scontent.faal1-1.fna.fbcdn.net/v/t1.15752-9/s2048x2048/47689456_2183546361899171_3672649710453129216_n.jpg?_nc_cat=101&_nc_ht=scontent.faal1-1.fna&oh=fa4564a73c58a2dd14bf089503f6558a&oe=5CA9AB2C");
+
+  /* Set a specific height */
+  height: 900px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+p{
+  color: #fff;
+  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+h1 {
+  color: #fff;
+  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}

@@ -50,7 +50,7 @@
               <button (click)="addToBasket()" class="add-to-cart btn btn-default" type="button">Add to basket</button>
             </div>
             <div *ngIf="currentUser != null">
-              <div *ngIf="currentUser.isAdmin == true"  class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+              <div *ngIf="currentUser.isAdmin == true"  class="btn-toolbar mt-2 float-right" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group mr-2" role="group" aria-label="First group">
                   <button  type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateModal" >Update Product</button>
                 </div>
@@ -132,3 +132,5 @@
 <div *ngIf=" !product" class="pr-5 pl-5 mt-5">
   <p><ngb-progressbar type="warning" [value]="100" [striped]="true" [animated]="true"><i>Loading..</i></ngb-progressbar></p>
 </div>
+
+

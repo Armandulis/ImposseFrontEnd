@@ -1,25 +1,44 @@
-<div *ngIf="user" style="text-align:center">
-  <button class="btn btn-secondary float-right" data-toggle="modal" data-target="#updateModal">Update Profile</button>
-<h1>Your Profile:</h1>
-<div class="p-2 mt-5">
-  <img class="circle" width="45" src="{{user.picture}}" alt="">
-  <style>
-    .circle {
-      height: 100px;
-      width: 100px;
-      background-color: #555;
-      border-radius: 50%;
-    }
-  </style>
-</div>
-<h1>Username: {{user.username}}</h1>
-<h1>Firstname: {{user.firstname}}</h1>
-<h1>Lastname: {{user.lastname}}</h1>
-<h1>Email: {{user.email}}</h1>
-  <button routerLink="/basket">View your basket</button>
-</div>
+<body>
+  <div *ngIf="user" style="text-align:center">
+    <div class="container">
+      <div class="card" >
+
+        <img class="card-img-top circle float-right"  src="{{user.picture}}" alt="Card image cap">
+        <style>
+          .circle {
+
+            height: 420px;
+            width: 420px;
+            background-color: #555;
+            border-radius: 50%;
+          }
+        </style>
+        <div class="card-body">
+
+          <label class="form-control is-valid">Username: {{user.username}}</label>
+          <label class="form-control is-valid">Firstname: {{user.firstname}}</label>
+          <label class="form-control is-valid">Lastname: {{user.lastname}}</label>
+          <label class="form-control is-valid">Email: {{user.email}}</label>
 
 
+        </div>
+
+
+
+        <div class="card-footer">
+          <div class="btn-toolbar mt-2 float-right" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+              <button class="btn btn-secondary float-right pr-2" routerLink="/basket">View your basket</button>
+            </div>
+            <div class="btn-group mr-2" role="group" aria-label="Second group">
+              <button class="btn btn-secondary float-right pr-2" data-toggle="modal" data-target="#updateModal">Update Profile</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
 
 <!-- Modal
 -->
@@ -45,7 +64,7 @@
           <label>Email:</label>
           <input formControlName="emailToUpdate" type="text" class="form-control is-valid" placeholder="Color:">
 
-        <label>Profile Picture::</label>
+        <label>Avatar:</label>
         <input formControlName="pictureToUpdate" type="text" class="form-control is-valid" placeholder="Color:">
 
         </div>

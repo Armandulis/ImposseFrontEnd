@@ -1,0 +1,10 @@
+
+body {
+  background-image: url("https://images.pexels.com/photos/988872/pexels-photo-988872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}

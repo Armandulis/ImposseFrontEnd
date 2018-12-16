@@ -1,13 +1,33 @@
-<button routerLink="">Back</button>
 
-<label>
-  Username:
-  <input type="text" [formControl]="username">
-</label>
+<body>
+<div class="parallax">
 
-<label>
-  Password:
-  <input type="password" [formControl]="password">
-</label>
+  <div class="container" >
 
-<button (click)="login()">Login</button>
+    <div class="row" id="pwd-container">
+      <div class="col-md-4"></div>
+
+      <div class="col-md-4">
+        <section class="login-form">
+            <img src="https://scontent.faal1-1.fna.fbcdn.net/v/t1.15752-9/s2048x2048/46487968_889643064565454_3896740951971856384_n.png?_nc_cat=106&_nc_ht=scontent.faal1-1.fna&oh=f511e6e3f3dfe0b0fb83b22dbac8fd3f&oe=5C9C6A93" class="img-responsive" style="margin-right: 50px; " alt="" />
+
+          <div>
+            <a routerLink="/register">Create account</a>
+          </div>
+          <input type="text" [formControl]="username" class="mb-5 form-control input-lg" placeholder="Username" />
+
+            <input type="password"   [formControl]="password" class=" mb-5 form-control input-lg"  placeholder="Password"  />
+
+
+            <button (click)="login()" class="btn btn-lg btn-primary btn-block">Sign in</button>
+
+        </section>
+      </div>
+
+      <div class="col-md-4"></div>
+
+
+    </div>
+  </div>
+</div>
+</body>

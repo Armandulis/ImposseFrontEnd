@@ -1,0 +1,16 @@
+body {
+  background-image: url("https://scontent.faal1-1.fna.fbcdn.net/v/t1.15752-9/s2048x2048/48051608_356106575152313_3211487153347362816_n.jpg?_nc_cat=102&_nc_ht=scontent.faal1-1.fna&oh=554180744aa5e9f28e7e93019770ee8f&oe=5C8F91DD");
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.container {
+
+  margin-top: 50px;
+  margin-left: 1250px;
+  width: 450px;
+  float: none;
+}

@@ -86,9 +86,10 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToBasket(){
-    this.basketService.addToBasket(this.product,this.currentUser.id).subscribe(success =>{
+    if (this.currentUser){this.basketService.addToBasket(this.product,this.currentUser.id).subscribe(success =>{
       alert('Product added to basket');
-    })
+    }); }
+    else {alert('Please login to put product in the basket!'); }
   }
 
   deleteProduct(id: number){
