@@ -9,6 +9,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {forEach} from '@angular/router/src/utils/collection';
 import {Review} from '../../shared/models/review';
 import {BasketService} from "../../shared/services/basket.service";
+import {error} from 'selenium-webdriver';
 
 @Component({
   selector: 'app-product-details',
@@ -88,13 +89,15 @@ export class ProductDetailsComponent implements OnInit {
   addToBasket(){
     if (this.currentUser){this.basketService.addToBasket(this.product,this.currentUser.id).subscribe(success =>{
       alert('Product added to basket');
-    }); }
+    },
+      error1 => {alert('Product is already in the basket!'); }
+    ); }
     else {alert('Please login to put product in the basket!'); }
   }
 
   deleteProduct(id: number){
     this.productService.deleteProduct(id).subscribe(() =>
-    { this.getProduct();
+    {
       alert('Product was deleted!');
       this.router.navigate(['/product']);});
 

@@ -22,6 +22,14 @@ export class ProductService {
 
   constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
 
+  getPagingProducts(page: number): Observable<Product[]> {
+
+    httpOptions.headers =
+      httpOptions.headers.set('Authorization', 'Bearer ' + this.authenticationService.getToken());
+
+    return this.http.get<Product[]>(environment.apiURL + '/products?currentpage=' + page + '&itemsperpage=20', httpOptions);
+  }
+
   getAllProducts(): Observable<Product[]> {
 
     httpOptions.headers =

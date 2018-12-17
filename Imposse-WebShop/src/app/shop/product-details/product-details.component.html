@@ -1,3 +1,4 @@
+<body>
 <div *ngIf="product" class="container mt-4 mb-4 col-md-12">
   <div class="card" >
     <div class="container-fliud">
@@ -15,7 +16,7 @@
 
         <div class="details col-md-6">
           <ul class="list-group list-group-flush">
-            <h1 class="product-title list-group-item">{{product.name}}</h1>
+            <h1 class="product-title list-group-item"><b>{{product.name}}</b></h1>
             <div class="rating">
               <div class="stars">
                 <!-- FIX THIS WHEN REVIEWS WILL BE IMPLEMENTED-->
@@ -30,22 +31,14 @@
             <h3 class="list-group-item">
               <p class="product-description "> {{product.description}}</p>
             </h3>
-            <h4 class="price">current price: <span>{{product.price}}</span></h4>
 
-            <div class="form-group">
-            <label for="sizes" class="sizes">sizes: </label>
-              <!-- HERE SHOULD BE SIZES-->
-              <select style="height: 30px" id="sizes" class="form-control" required>
-                <option value="">XS</option>
-                <option value="1">S</option>
-                <option value="2">M</option>
-                <option value="3">L</option>
-                <option value="3">XL</option>
-              </select>
+
+            <div class="form-group row">
+              <h4 class="price mr-5"><b>Current price:</b> <span> {{product.price}}</span></h4>
+              <h4 class="price mr-5"><b>Type:</b> <span> {{product.type}}</span></h4>
+              <h4 class="price"><b>Color:</b> <span> {{product.color}}</span></h4>
+
             </div>
-            <h5 class="colors">colors:
-              <!-- HERE SHOULD BE COLORS-->
-            </h5>
             <div class="action">
               <button (click)="addToBasket()" class="add-to-cart btn btn-default" type="button">Add to basket</button>
             </div>
@@ -64,6 +57,7 @@
       </div>
     </div>
   </div>
+
 </div>
 
 
@@ -109,7 +103,7 @@
 
             <div class="form-group">
               <label>Type:</label>
-              <input formControlName="typeToUpdate" type="text" class="form-control is-valid" placeholder="Price:">
+              <input formControlName="typeToUpdate" type="text" class="form-control is-valid" placeholder="Type:">
             </div>
 
           </div>
@@ -133,4 +127,4 @@
   <p><ngb-progressbar type="warning" [value]="100" [striped]="true" [animated]="true"><i>Loading..</i></ngb-progressbar></p>
 </div>
 
-
+</body>

@@ -14,6 +14,7 @@ import {AuthenticationService} from '../../shared/services/authentication.servic
 export class ProductsComponent implements OnInit {
 
   products: Product[];
+  currentPage = 1;
 
   user: User;
 
@@ -31,17 +32,27 @@ export class ProductsComponent implements OnInit {
   constructor(private productService: ProductService, private userService: UserService, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    this.getAllProducts();
+    this.getPagingProducts();
   }
 
-  getAllProducts(){
-    this.productService.getAllProducts().subscribe(list => this.products = list);
+  nextPage(){
+    this.currentPage++;
+    this.getPagingProducts();
+  }
+
+  previousPage(){
+    this.currentPage--;
+    this.getPagingProducts();
+  }
+
+  getPagingProducts(){
+    this.productService.getPagingProducts(this.currentPage).subscribe(list => this.products = list);
     if (this.authenticationService.getToken() != null){
     this.userService.getUserFromToken().subscribe(user => this.user = user);}
   }
   createProduct(){
     this.product = this.productForm.value;
-    this.productService.createProduct(this.product).subscribe(() => this.getAllProducts());
+    this.productService.createProduct(this.product).subscribe(() => this.getPagingProducts());
 
   }
 

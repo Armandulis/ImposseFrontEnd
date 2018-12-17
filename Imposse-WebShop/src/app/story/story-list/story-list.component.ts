@@ -20,6 +20,10 @@ export class StoryListComponent implements OnInit {
   stories: Story[];
   storyToUpdate: Story;
   currentUser: User;
+  infiniteDisabled = false;
+  onscroll = 0;
+  currentPage = 1;
+
 
 
   storyForm = new FormGroup({
@@ -42,7 +46,7 @@ export class StoryListComponent implements OnInit {
     if (this.currentUser == null) {
       this.getCurrentUser();
     }
-    this.refresh();
+    this.getPagingStories();
 
   }
   refresh() {
@@ -58,7 +62,8 @@ export class StoryListComponent implements OnInit {
     else { const story = this.storyForm.value;
       story.user = this.currentUser;
       this.storyService.createStory(story).subscribe(() => {
-        this.refresh();
+        this.getPagingStories();
+        alert('Story was posted!');
 
       });
     }
@@ -66,7 +71,7 @@ export class StoryListComponent implements OnInit {
   deleteStory(id: number){
 
     this.storyService.deleteStory(id).subscribe(() =>
-    {this.refresh();
+    {this.getPagingStories();
       alert('Story was deleted!');
     });
 
@@ -83,7 +88,7 @@ export class StoryListComponent implements OnInit {
     this.storyToUpdate.text = this.storyToUpForm.get('textToUp').value;
     this.storyToUpdate.title = this.storyToUpForm.get('titleToUp').value;
     this.storyService.updateStory(this.storyToUpdate).subscribe(() =>
-    { this.refresh();
+    { this.getPagingStories();
       alert('Story was updated!');});
 
   }
@@ -98,6 +103,23 @@ export class StoryListComponent implements OnInit {
         });
     }
 
+  }
+  getPagingStories() {
+    this.storyService.getPagingStories(this.currentPage).subscribe(stories => {
+      this.stories = stories;
+    });
+  }
+
+  nextPage(){
+    this.currentPage++;
+    this.getPagingStories();
+    window.scrollTo(0,0);
+  }
+
+  previousPage(){
+    this.currentPage--;
+    this.getPagingStories();
+    window.scrollTo(0,0);
   }
 
 

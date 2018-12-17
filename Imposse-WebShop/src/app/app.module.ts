@@ -21,6 +21,7 @@ import { ProductDetailsComponent } from './shop/product-details/product-details.
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {DataSharingService} from './shared/services/dataSharing.service';
 import { BasketComponent } from './basket/basket.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
 
 
@@ -44,7 +45,8 @@ import { BasketComponent } from './basket/basket.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    InfiniteScrollModule
   ],
   providers: [
     StoryService,

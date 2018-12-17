@@ -30,6 +30,12 @@ export class StoryService {
     return this.http.get<Story[]>(environment.apiURL + '/story', httpOptions);
   }
 
+  getPagingStories(page: number): Observable<Story[]> {
+    httpOptions.headers =
+      httpOptions.headers.set('Authorization', 'Bearer ' + this.authenticationService.getToken());
+    return this.http.get<Story[]>(environment.apiURL + '/story?currentpage=' + page + '&itemsperpage=20', httpOptions);
+  }
+
   createStory(story: Story): Observable<Story> {
     httpOptions.headers =
       httpOptions.headers.set('Authorization', 'Bearer ' + this.authenticationService.getToken());

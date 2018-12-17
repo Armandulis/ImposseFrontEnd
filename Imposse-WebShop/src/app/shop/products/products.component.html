@@ -27,6 +27,17 @@
 </div>
 </body>
 
+<div *ngIf="products" style="padding-left: 44%">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li *ngIf="currentPage>1" class="page-item pl-2 pr-2"><a class="page-link"(click)="previousPage()">Previous</a></li>
+      <li *ngIf="currentPage<=1" class="page-item disabled pl-2 pr-2"><a class="page-link"(click)="previousPage()">Previous</a></li>
+      <li class="page-item pl-2 pr-2"><a class="page-link ">{{currentPage}}</a></li>
+      <li *ngIf="products.length >= 20" class="page-item pl-2 pr-2"><a class="page-link" (click)="nextPage()">Next</a></li>
+      <li *ngIf="products.length < 20" class="page-item disabled pl-2 pr-2"><a class="page-link" (click)="nextPage()">Next</a></li>
+    </ul>
+  </nav>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -70,7 +81,7 @@
 
             <div class="form-group">
               <label>Type:</label>
-              <input formControlName="type" type="text" class="form-control is-valid" placeholder="Price:">
+              <input formControlName="type" type="text" class="form-control is-valid" placeholder="Type:">
             </div>
 
           </div>
