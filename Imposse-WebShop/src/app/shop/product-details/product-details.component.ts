@@ -10,6 +10,7 @@ import {forEach} from '@angular/router/src/utils/collection';
 import {Review} from '../../shared/models/review';
 import {BasketService} from "../../shared/services/basket.service";
 import {error} from 'selenium-webdriver';
+import {ReviewService} from '../../shared/services/review.service';
 
 @Component({
   selector: 'app-product-details',
@@ -23,6 +24,10 @@ export class ProductDetailsComponent implements OnInit {
   startRating: number;
   averageRating: number;
   amountofReviews: number;
+  isInBasket: false;
+  isReviewGiven = false;
+  listOfReviews: Review[];
+
   productToUpdateForm = new FormGroup({
     nameToUpdate: new FormControl(''),
     pictureToUpdate: new FormControl(''),
@@ -32,25 +37,33 @@ export class ProductDetailsComponent implements OnInit {
     colorToUpdate: new FormControl(''),
     typeToUpdate: new FormControl('')
   });
+  reviewForm = new FormGroup( {
+    user: new FormControl(''),
+    product: new FormControl(''),
+    comment: new FormControl(''),
+    rating: new FormControl('5')
+  });
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private productService: ProductService,
+              private reviewService: ReviewService,
               private authenticationService: AuthenticationService,
               private userService: UserService,
               private basketService: BasketService) { }
 
   ngOnInit() {
       this.getProduct();
-      this.getCurrentUser();
 
 
   }
+
 
   getProduct() {
     this.startRating = 0;
     this.amountofReviews = 0;
     this.averageRating = 0;
+
     const id = +this.route.snapshot.paramMap.get('id');
     this.productService.getProduct(id).subscribe(productID => {
       this.product = productID;
@@ -59,7 +72,8 @@ export class ProductDetailsComponent implements OnInit {
         this.startRating = this.startRating + review.rating;
         this.amountofReviews++;
       });
-      this.averageRating = this.startRating / this.amountofReviews;}
+        if(this.amountofReviews !== 0){
+      this.averageRating = this.startRating / this.amountofReviews;}}
 
 
       this.productToUpdateForm.patchValue({
@@ -71,6 +85,19 @@ export class ProductDetailsComponent implements OnInit {
         colorToUpdate: productID.color,
         typeToUpdate: productID.type
       });
+
+
+      this.getCurrentUser();
+
+    });
+
+  }
+
+  hideReviewButton(){
+    this.product.reviews.forEach(review =>{
+      if(review.user.username === this.currentUser.username){
+        this.isReviewGiven = true;
+      }
     });
 
   }
@@ -81,17 +108,24 @@ export class ProductDetailsComponent implements OnInit {
       this.userService.getUserByUsername(this.authenticationService.getUsername())
         .subscribe(usertoget => {
           this.currentUser = usertoget;
+          this.hideReviewButton();
+
         });
     }
 
   }
 
   addToBasket(){
-    if (this.currentUser){this.basketService.addToBasket(this.product,this.currentUser.id).subscribe(success =>{
-      alert('Product added to basket');
-    },
-      error1 => {alert('Product is already in the basket!'); }
-    ); }
+    if (this.currentUser) {
+      if (!this.basketService.getBasket(this.currentUser).subscribe(basket => basket.products.includes(this.product))) {
+        this.basketService.addToBasket(this.product,this.currentUser.id).subscribe(success =>{
+            alert('Product added to basket');
+          }
+        );
+      }
+      else {alert('Product is already in the basket!');}
+    }
+
     else {alert('Please login to put product in the basket!'); }
   }
 
@@ -113,6 +147,26 @@ export class ProductDetailsComponent implements OnInit {
     this.product.type = this.productToUpdateForm.get('typeToUpdate').value;
     this.productService.updateProduct(this.product).subscribe(() => {this.getProduct();   alert('Product was updated!');});
 
+  }
+
+  createReview() {
+
+
+    let review: Review;
+    review = this.reviewForm.value;
+    review.user = this.currentUser;
+    review.product = this.product;
+    if(review.comment === "" || review.rating == null  ){
+      alert('Requires rating and comment');
+    }
+    else {
+
+      this.reviewService.createReview(review).subscribe(() => {this.getProduct(); } );
+    }
+  }
+
+  deleteReview(id: number){
+    return this.reviewService.deleteReview(id).subscribe(()=> {this.getProduct(); this.isReviewGiven = false});
   }
 
 }

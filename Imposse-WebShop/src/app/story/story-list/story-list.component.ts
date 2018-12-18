@@ -59,13 +59,16 @@ export class StoryListComponent implements OnInit {
 
       this.router.navigate(['/login']);
     }
-    else { const story = this.storyForm.value;
-      story.user = this.currentUser;
-      this.storyService.createStory(story).subscribe(() => {
-        this.getPagingStories();
-        alert('Story was posted!');
-
-      });
+    else {
+      const story = this.storyForm.value;
+      if (story.title !== "" || story.text !== "" ) {
+        story.user = this.currentUser;
+        this.storyService.createStory(story).subscribe(() => {
+          this.getPagingStories();
+          alert('Story was posted!');
+        });
+      }
+      else alert('Story needs title and text!');
     }
   }
   deleteStory(id: number){
@@ -87,9 +90,11 @@ export class StoryListComponent implements OnInit {
   updateStory() {
     this.storyToUpdate.text = this.storyToUpForm.get('textToUp').value;
     this.storyToUpdate.title = this.storyToUpForm.get('titleToUp').value;
+    if (this.storyToUpdate.text != null || this.storyToUpdate.title != null ) {
     this.storyService.updateStory(this.storyToUpdate).subscribe(() =>
     { this.getPagingStories();
-      alert('Story was updated!');});
+      alert('Story was updated!');}); }
+    else alert('Story needs title and text!');
 
   }
 

@@ -52,7 +52,7 @@ export class ProductsComponent implements OnInit {
   }
   createProduct(){
     this.product = this.productForm.value;
-    this.productService.createProduct(this.product).subscribe(() => this.getPagingProducts());
+    this.productService.createProduct(this.product).subscribe(() => { this.getPagingProducts(); alert('Product was created');});
 
   }
 

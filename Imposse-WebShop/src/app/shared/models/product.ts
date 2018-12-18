@@ -9,5 +9,5 @@ export class Product {
   gender?: string;
   color: string;
   type?: string;
-  reviews: Review[];
+  reviews?: Review[];
 }

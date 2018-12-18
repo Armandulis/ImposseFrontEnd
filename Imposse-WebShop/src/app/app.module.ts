@@ -22,6 +22,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {DataSharingService} from './shared/services/dataSharing.service';
 import { BasketComponent } from './basket/basket.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {ReviewService} from './shared/services/review.service';
 
 
 
@@ -54,7 +55,8 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
     AuthGuard,
     UserService,
     ProductService,
-    DataSharingService
+    DataSharingService,
+    ReviewService
   ],
   bootstrap: [AppComponent],
   entryComponents: [StoryListComponent]

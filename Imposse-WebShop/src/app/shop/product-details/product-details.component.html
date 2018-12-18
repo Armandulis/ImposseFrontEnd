@@ -19,14 +19,14 @@
             <h1 class="product-title list-group-item"><b>{{product.name}}</b></h1>
             <div class="rating">
               <div class="stars">
-                <!-- FIX THIS WHEN REVIEWS WILL BE IMPLEMENTED-->
-                <span *ngIf="averageRating == 1"  class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
+
+                <span *ngIf="averageRating>0" class="fa fa-star"></span>
+                <span *ngIf="averageRating>1"class="fa fa-star"></span>
+                <span *ngIf="averageRating>2"class="fa fa-star"></span>
+                <span *ngIf="averageRating>3"class="fa fa-star"></span>
+                <span *ngIf="averageRating>4"class="fa fa-star"></span>
               </div>
-              <span class="review-no">{{amountofReviews}}</span>
+              <span class="review-no">{{amountofReviews}} reviews</span>
             </div>
             <h3 class="list-group-item">
               <p class="product-description "> {{product.description}}</p>
@@ -36,14 +36,26 @@
             <div class="form-group row">
               <h4 class="price mr-5"><b>Current price:</b> <span> {{product.price}}</span></h4>
               <h4 class="price mr-5"><b>Type:</b> <span> {{product.type}}</span></h4>
-              <h4 class="price"><b>Color:</b> <span> {{product.color}}</span></h4>
+              <h4 class="price  mr-5"><b>Color:</b> <span> {{product.color}}</span></h4>
+              <h4 class="price"><b>Gender:</b> <span> {{product.gender}}</span></h4>
 
             </div>
-            <div class="action">
-              <button (click)="addToBasket()" class="add-to-cart btn btn-default" type="button">Add to basket</button>
-            </div>
-            <div *ngIf="currentUser != null">
-              <div *ngIf="currentUser.isAdmin == true"  class="btn-toolbar mt-2 float-right" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="  row">
+              <div class="btn-group mr-2" role="group" aria-label="Second group">
+                <h6 *ngIf="!currentUser">Log in to add the item to basket and give a review</h6>
+
+                <div >
+                  <button *ngIf="currentUser" (click)="addToBasket()" class="btn btn-secondary pl-3" type="button">Add to basket</button>
+
+                </div>
+
+
+              </div>
+              <button *ngIf="!isReviewGiven && currentUser " type="button" class="btn btn-secondary pr-2" data-toggle="modal" data-target="#createModal" >Give A Review</button>
+
+              </div>
+            <div *ngIf="currentUser ">
+              <div *ngIf="currentUser.isAdmin"  class="btn-toolbar mt-2 float-right" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group mr-2" role="group" aria-label="First group">
                   <button  type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateModal" >Update Product</button>
                 </div>
@@ -58,6 +70,89 @@
     </div>
   </div>
 
+  <div *ngIf="product.reviews" class="card-group">
+    <div *ngFor="let review of product.reviews" > <div class="mt-5 mb-5 pl-5 pr-2" style="">
+      <div class="card bg-light mb-3">
+        <div class="card-header">
+          <div class="d-flex">
+            <div class="mt-4 pr-2">
+            </div>
+            <div class="p-2">
+              <img class="circle" src="{{review.user.picture}}" alt="">
+              <style>
+                .circle {
+                  height: 50px;
+                  width: 50px;
+                  background-color: #555;
+                  border-radius: 50%;
+                }
+              </style>
+            </div>
+
+
+            <div class="h7 mt-4 pr-2">{{review.user.username}}</div>
+
+            <div *ngIf="currentUser" class="ml-auto p-2 float-right" style="position:relative;">
+
+
+              <button *ngIf="currentUser.username == review.user.username || currentUser.isAdmin"
+                      (click)="deleteReview(review.id)" type="button" class="btn btn-secondary mt-2"> Delete Review</button>
+
+
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+
+          <div class="stars">
+            <span *ngIf="review.rating>0" class="fa fa-star checked"></span>
+            <span *ngIf="review.rating>1"class="fa fa-star checked"></span>
+            <span *ngIf="review.rating>2"class="fa fa-star checked"></span>
+            <span *ngIf="review.rating>3"class="fa fa-star"></span>
+            <span *ngIf="review.rating>4"class="fa fa-star"></span>
+          </div>
+          <p class="card-text">{{review.comment}}.</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <form [formGroup]="reviewForm" (ngSubmit)="createReview()">
+        <div class="modal-header">
+          <h5 class="modal-title ">Give A Review</h5>
+
+        </div>
+        <div *ngIf="product && product.reviews" class="modal-body" >
+
+          <label>Comment:</label>
+          <textarea formControlName="comment" class="form-control mt-1" style="height: 100px;" placeholder="Give your opinion?"></textarea>
+
+          <label for="ratings">Rating:</label>
+          <select  id="ratings" style="height: 30px" formControlName="rating" class="form-control is-valid" >
+            <option value="1">1 star</option>
+            <option value="2">2 stars</option>
+            <option value="3">3 stars</option>
+            <option value="4">4 stars</option>
+            <option value="5">5 stars</option>
+          </select>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
 </div>
 
 

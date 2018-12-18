@@ -52,7 +52,7 @@ export class UserService {
 
 
   addUserPassword(login: LoginInput): Observable<User>{
-    return this.http.put(environment.apiURL + '/user?password=true', login);
+    return this.http.put<User>(environment.apiURL + '/user?password=true', login);
   }
 
   updateUSer(user: User): Observable<User>{

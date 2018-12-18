@@ -5,5 +5,5 @@ export class Story {
   date?: string;
   title: string;
   text: string;
-  user?: User;
+  user: User;
 }
