@@ -16,8 +16,8 @@
         <div class="card-body">
 
           <label class="form-control is-valid">Username: {{user.username}}</label>
-          <label class="form-control is-valid">Firstname: {{user.firstname}}</label>
-          <label class="form-control is-valid">Lastname: {{user.lastname}}</label>
+          <label class="form-control is-valid">First name: {{user.firstname}}</label>
+          <label class="form-control is-valid">Last name: {{user.lastname}}</label>
           <label class="form-control is-valid">Email: {{user.email}}</label>
 
 
@@ -54,18 +54,18 @@
         </div>
         <div *ngIf="user" class="modal-body" >
 
-          <label>Firstname:</label>
-          <input formControlName="firstnameToUpdate" type="text" class="form-control is-valid" placeholder="Name:">
+          <label>First name:</label>
+          <input formControlName="firstnameToUpdate" type="text" class="form-control is-valid" placeholder="First Name:">
 
-          <label>Lastname:</label>
-          <input formControlName="pictureToUpdate" type="text" class="form-control is-valid" placeholder="Picture's link:">
+          <label>Last name:</label>
+          <input formControlName="lastnameToUpdate" type="text" class="form-control is-valid" placeholder="Last Name:">
 
 
           <label>Email:</label>
-          <input formControlName="emailToUpdate" type="text" class="form-control is-valid" placeholder="Color:">
+          <input formControlName="emailToUpdate" type="text" class="form-control is-valid" placeholder="Email:">
 
-        <label>Avatar:</label>
-        <input formControlName="pictureToUpdate" type="text" class="form-control is-valid" placeholder="Color:">
+        <label>Avatar Link:</label>
+        <input formControlName="pictureToUpdate" type="text" class="form-control is-valid" placeholder="Avatar's Link:">
 
         </div>
 

@@ -50,9 +50,11 @@ export class ProductsComponent implements OnInit {
     if (this.authenticationService.getToken() != null){
     this.userService.getUserFromToken().subscribe(user => this.user = user);}
   }
-  createProduct(){
+  createProduct() {
     this.product = this.productForm.value;
-    this.productService.createProduct(this.product).subscribe(() => { this.getPagingProducts(); alert('Product was created');});
+    this.productService.createProduct(this.product).subscribe(() => {
+      this.getPagingProducts(); alert('Product was created');
+    });
 
   }
 

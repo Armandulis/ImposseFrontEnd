@@ -10,7 +10,7 @@
     <div class="card-body">
 
 
-      <label>Username</label>
+      <label>Username:</label>
       <input class="form-control is-valid" (keyup)="onKeyPress()" [(ngModel)]="username" type="text" formControlName="username" placeholder="Username:">
       <p *ngIf="nameExists">This username is taken!</p>
 
@@ -26,8 +26,8 @@
       <label> Password:</label>
       <input formControlName="password" type="password" class="form-control is-valid" placeholder="Password:">
 
-      <label> Avatar link::</label>
-      <input formControlName="picture" type="text" class="form-control is-valid" placeholder="Avatar link::">
+      <label> Avatar link:</label>
+      <input formControlName="picture" type="text" class="form-control is-valid" placeholder="Avatar link:">
 
 
     </div>
